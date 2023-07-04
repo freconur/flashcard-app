@@ -1,8 +1,5 @@
-
-'use client'
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react'
-import { flashcardFromDeck } from '../../../Reducer/UserFlashCards';
 import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useGlobalContext } from '../../../context/ContextGlobal';
@@ -14,19 +11,25 @@ import { decksUserById } from '../../../Reducer/UserDecks';
 import DeleteFlashcardModal from '../../../modal/DeleteFlashcardModal';
 import AddNewFlashcardModal from '../../../modal/AddNewFlashcardModal';
 import { RxPlus } from "react-icons/rx";
+import { flashcardFromDeck } from '../../../Reducer/UserFlashCards';
 
 
-type Props = {
-  flashcards: Flashcards[]
-  idDeck: Flashcards[]
-}
+// type Props = {
+//   flashcards: Flashcards[]
+//   idDeck: Flashcards[]
+// }
 
-// export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
-//   const idDeck = query?.id as string
-//   const idUser = AuthUser.id as string
-//   const flashcards = await flashcardFromDeck(idUser, idDeck)
-//   return { props: {} }
-// })
+export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
+  // const idDeck = query?.id as string
+  // const idUser = AuthUser.id as string
+  // const flashcards = await flashcardFromDeck(idUser, idDeck)
+  return { props: {} }
+})
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   return {
+//       props: {}
+//   }
+// }
 
 const FlashcardsToPractice = () => {
   const { OnSnapshotFlashcards, globalData, getAllIdUser, flashcardIndexContext, getDataCurrentlyDeck } = useGlobalContext()
@@ -46,6 +49,7 @@ const FlashcardsToPractice = () => {
     getDataCurrentlyDeck(idUsers, idDecks)
     getAllIdUser(idUsers, idDecks)
     OnSnapshotFlashcards(idUsers, idDecks)
+    console.log('currentlyDeckData',currentlyDeckData)
   }, [selectedIndex])
 
   const selectFlashcard = (index: number, selectFlashcard: Flashcards[], next = true) => {
@@ -106,7 +110,7 @@ const FlashcardsToPractice = () => {
             }
             <div className={`flex w-[100%] p-5 justify-center items-center h-[45%] `}>
               {showRespuesta === false &&
-                <h3 className='cursor-pointer text-xl text-cyan-500 font-semibold' onClick={() => setShowRespuesta(!showRespuesta)}>mostrar respuesta</h3>
+                <h3 className='cursor-pointer text-xl text-cyan-500 font-semibold' onClick={() => setShowRespuesta(!showRespuesta)}>mostrarss respuesta</h3>
               }
               {showRespuesta
                 &&
@@ -138,4 +142,6 @@ const FlashcardsToPractice = () => {
 }
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
+  // whenUnauthedAfterInit: AuthAction.RENDER
+
 })(FlashcardsToPractice)
