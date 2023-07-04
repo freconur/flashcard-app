@@ -21,12 +21,12 @@ import { authApp } from '../../../firebase/firebase.config';
 //   idDeck: Flashcards[]
 // }
 
-export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
-  // const idDeck = query?.id as string
-  // const idUser = AuthUser.id as string
-  // const flashcards = await flashcardFromDeck(idUser, idDeck)
-  return { props: {} }
-})
+// export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
+//   // const idDeck = query?.id as string
+//   // const idUser = AuthUser.id as string
+//   // const flashcards = await flashcardFromDeck(idUser, idDeck)
+//   return { props: {} }
+// })
 // export const getServerSideProps: GetServerSideProps = async () => {
 //   return {
 //       props: {}
@@ -34,10 +34,10 @@ export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(asy
 // }
 
 const FlashcardsToPractice = () => {
-  // const [idUsers, setIdUserActive] = useState<string>('')
+  const [idUsers, setIdUsers] = useState<string>('')
   const { OnSnapshotFlashcards, globalData, getAllIdUser, flashcardIndexContext, getDataCurrentlyDeck } = useGlobalContext()
-  const AuthUser = useAuthUser()
-  const idUsers = AuthUser.id as string
+  // const AuthUser = useAuthUser()
+  // const idUsers = AuthUser.id as string
   const auth = getAuth(authApp);
   const { query } = useRouter()
   const idDecks = query.id as string
@@ -50,16 +50,20 @@ const FlashcardsToPractice = () => {
   const [showAddNewFlashcardModal, setShowAddNewFlashcardModal] = useState<boolean>(false)
 
   useEffect(() => {
-    // auth.onAuthStateChanged(authUser=>{
-    //   if(authUser) {
-    //     setIdUserActive(authUser.uid as string)
-    //   }
-    // })
+    auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        setIdUsers(authUser.uid as string)
+      }
+    })
+  })
+  useEffect(() => {
 
-    getDataCurrentlyDeck(idUsers, idDecks)
-    getAllIdUser(idUsers, idDecks)
-    OnSnapshotFlashcards(idUsers, idDecks)
-    console.log('currentlyDeckData',currentlyDeckData)
+    if (idUsers) {
+      getDataCurrentlyDeck(idUsers, idDecks)
+      getAllIdUser(idUsers, idDecks)
+      OnSnapshotFlashcards(idUsers, idDecks)
+      console.log('currentlyDeckData', currentlyDeckData)
+    }
   }, [selectedIndex])
 
   const selectFlashcard = (index: number, selectFlashcard: Flashcards[], next = true) => {
@@ -102,7 +106,7 @@ const FlashcardsToPractice = () => {
           <div className='relative z-40 h-[80%] w-[80%] bg-background-flashcards border-[1px] border-slate-100 rounded-md'>
 
             <div className="flex justify-between items-center gap-3 m-5">
-              <div onClick={()=>setShowAddNewFlashcardModal(!showAddNewFlashcardModal)} className='flex rounded-full opacity-50 hover:opacity-100 duration-300 bg-blue-300 w-[30px] h-[30px] justify-center items-center'>
+              <div onClick={() => setShowAddNewFlashcardModal(!showAddNewFlashcardModal)} className='flex rounded-full opacity-50 hover:opacity-100 duration-300 bg-blue-300 w-[30px] h-[30px] justify-center items-center'>
                 <RxPlus className='cursor-pointer text-xl' />
               </div>
               <div className='flex justify-center items-center gap-5'>
@@ -151,13 +155,13 @@ const FlashcardsToPractice = () => {
   )
 }
 
-// export default FlashcardsToPractice
+export default FlashcardsToPractice
 
 
-export default withAuthUser({
-//   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
-//   // whenUnauthedAfterInit: AuthAction.RENDER
-whenAuthed: AuthAction.RENDER,
-  whenUnauthedBeforeInit: AuthAction.RENDER,
-  whenUnauthedAfterInit: AuthAction.RENDER,
-})(FlashcardsToPractice)
+// export default withAuthUser({
+//   //   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
+//   //   // whenUnauthedAfterInit: AuthAction.RENDER
+//   whenAuthed: AuthAction.RENDER,
+//   whenUnauthedBeforeInit: AuthAction.RENDER,
+//   whenUnauthedAfterInit: AuthAction.RENDER,
+// })(FlashcardsToPractice)
