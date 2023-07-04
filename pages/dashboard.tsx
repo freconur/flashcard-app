@@ -51,6 +51,7 @@ const Dashboard = () => {
 //se ejecuta en el servidor
 
 export default withAuthUser({
+  // whenAuthed: AuthAction.RENDER
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
 })(Dashboard)//funciona en client
 

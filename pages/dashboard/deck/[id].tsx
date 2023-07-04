@@ -21,12 +21,12 @@ type Props = {
   idDeck: Flashcards[]
 }
 
-export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
-  const idDeck = query?.id as string
-  const idUser = AuthUser.id as string
-  const flashcards = await flashcardFromDeck(idUser, idDeck)
-  return { props: {} }
-})
+// export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser, query }) => {
+//   const idDeck = query?.id as string
+//   const idUser = AuthUser.id as string
+//   const flashcards = await flashcardFromDeck(idUser, idDeck)
+//   return { props: {} }
+// })
 
 const FlashcardsToPractice = () => {
   const { OnSnapshotFlashcards, globalData, getAllIdUser, flashcardIndexContext, getDataCurrentlyDeck } = useGlobalContext()
