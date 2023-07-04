@@ -12,6 +12,8 @@ import DeleteFlashcardModal from '../../../modal/DeleteFlashcardModal';
 import AddNewFlashcardModal from '../../../modal/AddNewFlashcardModal';
 import { RxPlus } from "react-icons/rx";
 import { flashcardFromDeck } from '../../../Reducer/UserFlashCards';
+import { getAuth } from 'firebase/auth';
+import { authApp } from '../../../firebase/firebase.config';
 
 
 // type Props = {
@@ -32,9 +34,11 @@ export const getServerSideProps: GetServerSideProps = withAuthUserTokenSSR()(asy
 // }
 
 const FlashcardsToPractice = () => {
+  // const [idUsers, setIdUserActive] = useState<string>('')
   const { OnSnapshotFlashcards, globalData, getAllIdUser, flashcardIndexContext, getDataCurrentlyDeck } = useGlobalContext()
   const AuthUser = useAuthUser()
   const idUsers = AuthUser.id as string
+  const auth = getAuth(authApp);
   const { query } = useRouter()
   const idDecks = query.id as string
   const { flashcardsOnSanpshot, flashcardIndex, currentlyDeckData } = globalData
@@ -46,6 +50,12 @@ const FlashcardsToPractice = () => {
   const [showAddNewFlashcardModal, setShowAddNewFlashcardModal] = useState<boolean>(false)
 
   useEffect(() => {
+    // auth.onAuthStateChanged(authUser=>{
+    //   if(authUser) {
+    //     setIdUserActive(authUser.uid as string)
+    //   }
+    // })
+
     getDataCurrentlyDeck(idUsers, idDecks)
     getAllIdUser(idUsers, idDecks)
     OnSnapshotFlashcards(idUsers, idDecks)
@@ -140,8 +150,14 @@ const FlashcardsToPractice = () => {
     </>
   )
 }
-export default withAuthUser({
-  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
-  // whenUnauthedAfterInit: AuthAction.RENDER
 
+// export default FlashcardsToPractice
+
+
+export default withAuthUser({
+//   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
+//   // whenUnauthedAfterInit: AuthAction.RENDER
+whenAuthed: AuthAction.RENDER,
+  whenUnauthedBeforeInit: AuthAction.RENDER,
+  whenUnauthedAfterInit: AuthAction.RENDER,
 })(FlashcardsToPractice)
