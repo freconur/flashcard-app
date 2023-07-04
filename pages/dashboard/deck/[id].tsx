@@ -32,9 +32,10 @@ import { authApp } from '../../../firebase/firebase.config';
 //       props: {}
 //   }
 // }
-
+type aaaaa = { id: string }
 const FlashcardsToPractice = () => {
-  const [idUsers, setIdUsers] = useState<string>('')
+  const [idUsers, setIdUsers] = useState<aaaaa>({id:''})
+  const [test, setTest] = useState<aaaaa>()
   const { OnSnapshotFlashcards, globalData, getAllIdUser, flashcardIndexContext, getDataCurrentlyDeck } = useGlobalContext()
   // const AuthUser = useAuthUser()
   // const idUsers = AuthUser.id as string
@@ -49,46 +50,53 @@ const FlashcardsToPractice = () => {
   const [showModalDeleteFlashcard, setShowModalDeleteFlashcard] = useState<boolean>(false)
   const [showAddNewFlashcardModal, setShowAddNewFlashcardModal] = useState<boolean>(false)
 
-  useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
+  const getUSer = () => {
+    auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setIdUsers(authUser.uid as string)
+        setIdUsers({
+          ...test,
+          id:authUser.uid as string,
+          
+        })
       }
     })
-  })
-  useEffect(() => {
+  }
 
-    if (idUsers) {
-      getDataCurrentlyDeck(idUsers, idDecks)
-      getAllIdUser(idUsers, idDecks)
-      OnSnapshotFlashcards(idUsers, idDecks)
+  useEffect(() => {
+    // debugger
+    getUSer()
+    // debugger
+    if (idUsers.id) {
+      getDataCurrentlyDeck(idUsers.id, idDecks)
+      getAllIdUser(idUsers.id, idDecks)
+      OnSnapshotFlashcards(idUsers.id, idDecks)
       console.log('currentlyDeckData', currentlyDeckData)
     }
-  }, [selectedIndex])
+  }, [selectedIndex,idUsers.id])
 
   const selectFlashcard = (index: number, selectFlashcard: Flashcards[], next = true) => {
     const condition = next ? index < selectFlashcard.length - 1 : index > 0
     const nextIndex = next ? condition ? index + 1 : 0 : condition ? index - 1 : selectFlashcard.length - 1
     setSelectedIndex(nextIndex)
     flashcardIndexContext(nextIndex)
-    decksUserById(idUsers, idDecks, nextIndex)
+    decksUserById(idUsers.id, idDecks, nextIndex)
   }
   const prev = () => {
     if (selectedIndex === 9999) {
       selectFlashcard(currentlyDeckData.index as number, flashcardsOnSanpshot, false)
-      OnSnapshotFlashcards(idUsers, idDecks)
+      OnSnapshotFlashcards(idUsers.id, idDecks)
     } else {
       selectFlashcard(selectedIndex, flashcardsOnSanpshot, false)
-      OnSnapshotFlashcards(idUsers, idDecks)
+      OnSnapshotFlashcards(idUsers.id, idDecks)
     }
   }
   const next = () => {
     if (selectedIndex === 9999) {
       selectFlashcard(currentlyDeckData.index as number, flashcardsOnSanpshot)
-      OnSnapshotFlashcards(idUsers, idDecks)
+      OnSnapshotFlashcards(idUsers.id, idDecks)
     } else {
       selectFlashcard(selectedIndex, flashcardsOnSanpshot)
-      OnSnapshotFlashcards(idUsers, idDecks)
+      OnSnapshotFlashcards(idUsers.id, idDecks)
     }
   }
   const handleShowRespuesta = () => {
@@ -97,7 +105,7 @@ const FlashcardsToPractice = () => {
   return (
     <>
       {showModalUpdateFlashcard && <UpdateFlashcardModal flascardData={flashcardsOnSanpshot[id]} showModalUpdateFlashcard={showModalUpdateFlashcard} setShowModalUpdateFlashcard={setShowModalUpdateFlashcard} />}
-      {showModalDeleteFlashcard && <DeleteFlashcardModal idDeck={idDecks} idUser={idUsers} idFlashcard={flashcardsOnSanpshot[selectedIndex === 9999 ? currentlyDeckData.index as number : selectedIndex]?.id as string} showModalDeleteFlashcard={showModalDeleteFlashcard} setShowModalDeleteFlashcard={setShowModalDeleteFlashcard} />}
+      {showModalDeleteFlashcard && <DeleteFlashcardModal idDeck={idDecks} idUser={idUsers.id} idFlashcard={flashcardsOnSanpshot[selectedIndex === 9999 ? currentlyDeckData.index as number : selectedIndex]?.id as string} showModalDeleteFlashcard={showModalDeleteFlashcard} setShowModalDeleteFlashcard={setShowModalDeleteFlashcard} />}
       {showAddNewFlashcardModal && <AddNewFlashcardModal showAddNewFlashcardModal={showAddNewFlashcardModal} setShowAddNewFlashcardModal={setShowAddNewFlashcardModal} />}
       {flashcardsOnSanpshot
         &&
