@@ -6,7 +6,7 @@ import { AuthAction, withAuthUser } from 'next-firebase-auth'
 // import { Navbar } from '../components/Navbar'
 
 const DynamicNavbar = dynamic(() => import('../components/Navbar'), {
-  ssr: false,
+  ssr: true,
 })
 type Props ={
     children: JSX.Element
