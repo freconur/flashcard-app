@@ -15,20 +15,20 @@ type Props = {
   decksUser: DecksUser[]
   // idUser: string
 }
-export const getServerSideProps = withAuthUserTokenSSR({ whenUnauthed: AuthAction.REDIRECT_TO_LOGIN })(async ({AuthUser}) => {
-  const idUser = AuthUser.id as string
-  const decksUser = await decksUserServerSideProps(idUser)
-  
-  if (typeof window !== 'undefined') {
-        localStorage.setItem('ID_USER',JSON.stringify(idUser));
-    }
-  return { 
-    props: {decksUser}
-  }
-}
-  )
+// export const getServerSideProps = withAuthUserTokenSSR({ whenUnauthed: AuthAction.REDIRECT_TO_LOGIN })(async ({ AuthUser }) => {
+//   const idUser = AuthUser.id as string
+//   const decksUser = await decksUserServerSideProps(idUser)
 
-const Dashboard: any = ({ decksUser }: Props) => {
+//   if (typeof window !== 'undefined') {
+//     localStorage.setItem('ID_USER', JSON.stringify(idUser));
+//   }
+//   return {
+//     props: {}
+//   }
+// }
+// )
+
+const Dashboard = () => {
   const AuthUser = useAuthUser()
   const [state, dispatch] = useReducer(DecksReducer, DecksInitial)
   const infoUser = { id: `${AuthUser.id}`, email: `${AuthUser.email}`, name: `${AuthUser.displayName}` }
