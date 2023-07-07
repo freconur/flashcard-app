@@ -14,6 +14,7 @@ import { RxPlus } from "react-icons/rx";
 import { flashcardFromDeck } from '../../../Reducer/UserFlashCards';
 import { getAuth } from 'firebase/auth';
 import { authApp } from '../../../firebase/firebase.config';
+import LayoutFlashcard from '../../../layout/LayoutFlashcard';
 
 
 // type Props = {
@@ -107,6 +108,7 @@ const FlashcardsToPractice = () => {
       {showModalUpdateFlashcard && <UpdateFlashcardModal flascardData={flashcardsOnSanpshot[id]} showModalUpdateFlashcard={showModalUpdateFlashcard} setShowModalUpdateFlashcard={setShowModalUpdateFlashcard} />}
       {showModalDeleteFlashcard && <DeleteFlashcardModal idDeck={idDecks} idUser={idUsers.id} idFlashcard={flashcardsOnSanpshot[selectedIndex === 9999 ? currentlyDeckData.index as number : selectedIndex]?.id as string} showModalDeleteFlashcard={showModalDeleteFlashcard} setShowModalDeleteFlashcard={setShowModalDeleteFlashcard} />}
       {showAddNewFlashcardModal && <AddNewFlashcardModal showAddNewFlashcardModal={showAddNewFlashcardModal} setShowAddNewFlashcardModal={setShowAddNewFlashcardModal} />}
+      <LayoutFlashcard>
       {flashcardsOnSanpshot
         &&
         <div className='bg-secundary h-altura flex justify-center items-center'>
@@ -159,6 +161,7 @@ const FlashcardsToPractice = () => {
 
         </div>
       }
+      </LayoutFlashcard>
     </>
   )
 }
