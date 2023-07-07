@@ -20,7 +20,8 @@ type GlobalContextProps = {
   OnSnapshotFlashcards: (idUser: string, idDeck: string) => void,
   getAllIdUser:(idUser:string, idDeck:string) => void,
   flashcardIndexContext:(index:number) => void,
-  getDataCurrentlyDeck:(idUser:string, idDeck:string) => void
+  getDataCurrentlyDeck:(idUser:string, idDeck:string) => void,
+  getUserInfo:(userData:UserInfo) => void
 }
 //crear el contexto
 export const GlobalContext = createContext<GlobalContextProps>({} as GlobalContextProps)
@@ -61,6 +62,9 @@ export function GlobalProvider({ children }: Props) {
   const getDataCurrentlyDeck = (idUser:string, idDeck:string) => {
     currentlyDeckDatas(dispatch,idUser, idDeck)
   }
+  const getUserInfo = (userData:UserInfo) => {
+    dispatch({type:"userInfo", payload:userData})
+  }
   return (
     <GlobalContext.Provider value={{
       globalData,
@@ -74,7 +78,8 @@ export function GlobalProvider({ children }: Props) {
       OnSnapshotFlashcards,
       getAllIdUser,
       flashcardIndexContext,
-      getDataCurrentlyDeck
+      getDataCurrentlyDeck,
+      getUserInfo
     }}>
       {children}
     </GlobalContext.Provider>

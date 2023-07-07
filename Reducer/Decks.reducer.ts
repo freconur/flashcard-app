@@ -12,6 +12,7 @@ type Decks =
   | { type: "getAllIdUser"; payload:string, payload2:string}
   | { type: "flashcardIndex"; payload:number}
   | { type: "currentlyDeckData"; payload:DecksUser}
+  | { type: "userInfo"; payload:UserInfo}
   
 
 
@@ -30,12 +31,18 @@ export const DecksInitial = {
   currentlyDeck:{} as DecksUser,
   flashcardsOnSanpshot: [] as Flashcards[],
   flashcardIndex: 0 as number,
-  currentlyDeckData:{} as DecksUser
+  currentlyDeckData:{} as DecksUser,
+  userInfo:{} as UserInfo
 }
 
 export const DecksReducer = (state: DecksDataGlobal, action: Decks) => {
   switch (action.type) {
-    
+    case "userInfo": {
+      return {
+        ...state,
+        userInfo:action.payload
+      }
+    }
     case "currentlyDeckData":{
       return {
         ...state,

@@ -15,7 +15,7 @@ const Layout= ({children}:Props) => {
 
   return (
     <div className='grid grid-rows-layoutGlobal min-h-[100vh]'>
-      <DynamicNavbar/>
+      {/* <DynamicNavbar/> */}
         {children}
         {/* <Footer/> */}
     </div>

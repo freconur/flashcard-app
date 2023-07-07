@@ -11,6 +11,8 @@ import { DecksInitial, DecksReducer } from '../Reducer/Decks.reducer'
 import LayoutDashboard from '../layout/LayoutDashboard'
 import { TestUser } from '../helpers/userFunctions'
 import FlahsCards from '../components/FlashCards/FlahsCards'
+import { useGlobalContext } from '../context/ContextGlobal'
+import NavbarDashboard from '../components/NavbarDashboard/NavbarDashboard'
 type Props = {
   decksUser: DecksUser[]
   // idUser: string
@@ -32,13 +34,19 @@ const Dashboard = () => {
   const AuthUser = useAuthUser()
   const [state, dispatch] = useReducer(DecksReducer, DecksInitial)
   const infoUser = { id: `${AuthUser.id}`, email: `${AuthUser.email}`, name: `${AuthUser.displayName}` }
-
-  useEffect(() => {
-    TestUser(dispatch, infoUser)
-    dispatch({ type: "idUser", payload: `${AuthUser.id}` })
-  }, [])
+const { getUserInfo, globalData } = useGlobalContext()
+    useEffect(() => {
+      TestUser(dispatch, infoUser)
+      if(AuthUser) {
+        getUserInfo({ id: `${AuthUser.id}`, photo: `${AuthUser.photoURL}`, name: `${AuthUser.displayName}` })
+        dispatch({ type: "idUser", payload: `${AuthUser.id}` })
+      }
+  
+    }, [AuthUser])
+  console.log('globalData',globalData)
   return (
     <LayoutDashboard>
+
       <div className='w-full bg-background-flashcards'>
         <FlahsCards />
       </div>

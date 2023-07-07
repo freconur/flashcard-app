@@ -1,7 +1,7 @@
 interface UserInfo{
-  name?:string,
+  id?:string,
   photo?:string,
-  email?:string
+  name?:string
 }
 interface UserData {
   id?:string
@@ -42,7 +42,8 @@ interface DecksDataGlobal {
   currentlyDeck?:DecksUser,
   flashcardsOnSanpshot:Flashcards[],
   flashcardIndex:number,
-  currentlyDeckData:DecksUser
+  currentlyDeckData:DecksUser,
+  userInfo:UserInfo
 }
 interface UseSelectColor {
   color:string,
