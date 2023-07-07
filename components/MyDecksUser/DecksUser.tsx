@@ -22,7 +22,7 @@ const DecksUser = () => {
     })
   }, [])
   return (
-    <div>
+    <div className='overflow-y-scroll my-2'>
       <ListDecks idUser={idUser} decksUser={decksUser} />
     </div>
   )

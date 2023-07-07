@@ -40,7 +40,7 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
           showAddNewFlashcardModal &&
           <AddNewFlashcardModal showAddNewFlashcardModal={showAddNewFlashcardModal} setShowAddNewFlashcardModal={setShowAddNewFlashcardModal}/>
         }
-      <ul className='grid gap-3 py-4'>
+      <ul className='grid gap-3 py-2'>
         {
           decksUser &&
           decksUser.map((decks, index) => {
