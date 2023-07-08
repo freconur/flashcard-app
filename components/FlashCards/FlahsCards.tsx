@@ -22,7 +22,6 @@ const FlahsCards = () => {
         {
           getFlashcardsFromDecks.length === 0
             ?
-            // <h1>holiwi</h1>
             <Welcome/>
             :
             <div>

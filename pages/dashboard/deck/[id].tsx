@@ -147,13 +147,13 @@ const FlashcardsToPractice = () => {
 
             <div
               onClick={() => { prev(), handleShowRespuesta() }}
-              className="absolute hover:opacity-60 duration-300 cursor-pointer left-[20px] top-[350px] z-60 rounded-full rotate-90 bg-gray-100 hover:bg-white"
+              className="absolute hover:opacity-60 duration-300 cursor-pointer left-[20px] top-[50%] z-60 rounded-full rotate-90 bg-gray-100 hover:bg-white"
             >
               <RiArrowDownSLine className="text-3xl" />
             </div>
             <div
               onClick={() => { next(), handleShowRespuesta() }}
-              className="absolute hover:opacity-60 duration-300 cursor-pointer right-[20px] top-[350px] z-60  rounded-full -rotate-90 bg-gray-100 hover:bg-white"
+              className="absolute hover:opacity-60 duration-300 cursor-pointer right-[20px] top-[50%] z-60  rounded-full -rotate-90 bg-gray-100 hover:bg-white"
             >
               <RiArrowDownSLine className="text-3xl" />
             </div>

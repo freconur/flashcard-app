@@ -8,7 +8,7 @@ const Welcome = () => {
         <h1 className='text-2xl text-slate-300 font-semibold my-5'>Bienvenido a tu dashboard de estudio favorito</h1>
         <div>
           <p className='text-xl text-slate-300 font-medium my-5'>
-            Para comenzar a estudiar selecciona un deck del lado izquierdo, si aun no tienes un deck creado puedes hacerlo dando en el boton de crear nuevo deck.
+            Para comenzar a estudiar selecciona un deck del lado izquierdo, si aun no tienes un deck creado puedes hacerlo dando en el boton de crear nuevo deck o agrega nuevas tarjetas.
           </p>
           <p className='text-xl text-slate-300 font-medium my-5'>
             Agrega los deck que necesites para estudiar lo que quieras en cualquier momento.
