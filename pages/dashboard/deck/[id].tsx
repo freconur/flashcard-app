@@ -134,7 +134,7 @@ const FlashcardsToPractice = () => {
             }
             <div className={`flex w-[100%] p-5 justify-center items-center h-[45%] `}>
               {showRespuesta === false &&
-                <h3 className='cursor-pointer text-xl text-cyan-500 font-semibold' onClick={() => setShowRespuesta(!showRespuesta)}>mostrarss respuesta</h3>
+                <h3 className='cursor-pointer text-xl text-cyan-500 font-semibold' onClick={() => setShowRespuesta(!showRespuesta)}>mostrar respuesta</h3>
               }
               {showRespuesta
                 &&

@@ -21,7 +21,8 @@ type GlobalContextProps = {
   getAllIdUser:(idUser:string, idDeck:string) => void,
   flashcardIndexContext:(index:number) => void,
   getDataCurrentlyDeck:(idUser:string, idDeck:string) => void,
-  getUserInfo:(userData:UserInfo) => void
+  getUserInfo:(userData:UserInfo) => void,
+  updateTitleDeck:(titleDeck:string) => void
 }
 //crear el contexto
 export const GlobalContext = createContext<GlobalContextProps>({} as GlobalContextProps)
@@ -48,6 +49,10 @@ export function GlobalProvider({ children }: Props) {
   }
   const handleUpdateFlashCardTest = (idUser: string, idDeck:string, currentlyValuesFlashcard: Flashcards | undefined) => {
     updateFlashCard(idUser, idDeck, currentlyValuesFlashcard)
+  }
+  const updateTitleDeck = (titleDeck:string) => {
+    console.log('titleDeck',titleDeck)
+    dispatch({type:"updateTitleDeck", payload:titleDeck})
   }
   const flashcardIndexContext = (index:number) => {
     dispatch({type:"flashcardIndex", payload:index})
@@ -79,7 +84,8 @@ export function GlobalProvider({ children }: Props) {
       getAllIdUser,
       flashcardIndexContext,
       getDataCurrentlyDeck,
-      getUserInfo
+      getUserInfo,
+      updateTitleDeck
     }}>
       {children}
     </GlobalContext.Provider>

@@ -13,6 +13,7 @@ type Decks =
   | { type: "flashcardIndex"; payload:number}
   | { type: "currentlyDeckData"; payload:DecksUser}
   | { type: "userInfo"; payload:UserInfo}
+  | { type: "updateTitleDeck"; payload:string}
   
 
 
@@ -37,6 +38,12 @@ export const DecksInitial = {
 
 export const DecksReducer = (state: DecksDataGlobal, action: Decks) => {
   switch (action.type) {
+    case "updateTitleDeck":{
+      return {
+        ...state,
+        getTitleFromDeck:action.payload
+      }
+    }
     case "userInfo": {
       return {
         ...state,

@@ -43,7 +43,6 @@ const { getUserInfo, globalData } = useGlobalContext()
       }
   
     }, [AuthUser])
-  console.log('globalData',globalData)
   return (
     <LayoutDashboard>
 

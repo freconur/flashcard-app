@@ -14,11 +14,10 @@ const FlahsCards = () => {
   const [showModalDeleteFlashcard, setShowModalDeleteFlashcard] = useState<boolean>(false)
   const [flascardData, setFlascardData] = useState<Flashcards>()
 
-  console.log('getFlashcardsFromDecks', getFlashcardsFromDecks)
+  useEffect(() => {},[getTitleFromDeck])
   return (
     <>
       <div className='p-3 h-altura'>
-        {/* queda pendiente traer el dato del title del deck asignado */}
         {
           getFlashcardsFromDecks.length === 0
             ?

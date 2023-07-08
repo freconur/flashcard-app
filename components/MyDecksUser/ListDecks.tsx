@@ -2,7 +2,7 @@ import { useGlobalContext } from '../../context/ContextGlobal'
 import { RiMore2Fill } from "react-icons/ri";
 import { RxPlus } from "react-icons/rx";
 import { COLOR_TO_DECK } from '../../utils/colorToDeck';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../../styles/DeckSettings.module.css'
 import useOnClickOutside from '../../Hooks/useOnClickOutside';
 import { RiEdit2Fill } from "react-icons/ri";
@@ -32,6 +32,7 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
   const handleAddNewFlashcard = () => {
 
   }
+
   return (
     <div>
       {
