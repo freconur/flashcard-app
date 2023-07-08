@@ -42,6 +42,7 @@ module.exports = {
         'layoutGlobal': 'auto 1fr auto',
         '8': 'repeat(8, minmax(0, 1fr))',
         'gridSideBar': 'auto calc(100vh - 194px) auto',
+        'flashcardWelcome': 'auto auto',
         // Complex site-specific row configuration
         'layout': '200px minmax(900px, 1fr) 100px',
       },

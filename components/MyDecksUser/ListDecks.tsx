@@ -2,13 +2,15 @@ import { useGlobalContext } from '../../context/ContextGlobal'
 import { RiMore2Fill } from "react-icons/ri";
 import { RxPlus } from "react-icons/rx";
 import { COLOR_TO_DECK } from '../../utils/colorToDeck';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from '../../styles/DeckSettings.module.css'
 import useOnClickOutside from '../../Hooks/useOnClickOutside';
 import { RiEdit2Fill } from "react-icons/ri";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import DeleteDeckModal from '../../modal/DeleteDeckModal';
 import AddNewFlashcardModal from '../../modal/AddNewFlashcardModal';
+import { RiLoader4Line } from "react-icons/ri";
+
 interface Props {
   decksUser: DecksUser[],
   idUser: string
@@ -16,7 +18,7 @@ interface Props {
 const ListDecks = ({ decksUser, idUser }: Props) => {
   const setting = useRef(null);
   const context = useGlobalContext()
-  const { SelectDeck, updateDeckShow, DataToDeckUpdate,globalData } = context
+  const { SelectDeck, updateDeckShow, DataToDeckUpdate, globalData } = context
   const [showSettingDeck, setShowSettingDeck] = useState<boolean>(false)
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [showAddNewFlashcardModal, setShowAddNewFlashcardModal] = useState<boolean>(false)
@@ -32,22 +34,22 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
   }
   return (
     <div>
-        {
-          showDeleteModal &&
-          <DeleteDeckModal getIdDeck={getIdDeck} idUser={idUser} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
-        }
-        {
-          showAddNewFlashcardModal &&
-          <AddNewFlashcardModal showAddNewFlashcardModal={showAddNewFlashcardModal} setShowAddNewFlashcardModal={setShowAddNewFlashcardModal}/>
-        }
+      {
+        showDeleteModal &&
+        <DeleteDeckModal getIdDeck={getIdDeck} idUser={idUser} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
+      }
+      {
+        showAddNewFlashcardModal &&
+        <AddNewFlashcardModal showAddNewFlashcardModal={showAddNewFlashcardModal} setShowAddNewFlashcardModal={setShowAddNewFlashcardModal} />
+      }
       <ul className='grid gap-3 py-2'>
         {
-          decksUser &&
-          decksUser.map((decks, index) => {
-            return (
+          decksUser ?
+            decksUser.map((decks, index) => {
+              return (
                 <div id={`${index}`}
                   // onClick={() => SelectDeck(`${decks?.id}`,`${decks?.title}`, idUser, decksUser)}
-                  onClick={() => SelectDeck(decks,idUser, decksUser)}
+                  onClick={() => SelectDeck(decks, idUser, decksUser)}
                   className={`${decks?.colorDeck && COLOR_TO_DECK[Number(decks?.colorDeck)]} ${decks?.focus ? "p-[1.5px] pl-2" : "pl-2"} cursor-pointer rounded-md `}
                   key={decks.id}>
 
@@ -60,7 +62,7 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
                       <div className="flex justify-center items-center gap-3">
                         <RiEdit2Fill onClick={() => { DataToDeckUpdate(decks), updateDeckShow() }} className='text-gray-300 hover:text-gray-100 font-semibold text-md' />
 
-                        <RiDeleteBin6Fill onClick={() => {setShowDeleteModal(!showDeleteModal); setGetIdDeck(`${decks?.id}`)}} className='text-gray-300 hover:text-gray-100 font-semibold text-md' />
+                        <RiDeleteBin6Fill onClick={() => { setShowDeleteModal(!showDeleteModal); setGetIdDeck(`${decks?.id}`) }} className='text-gray-300 hover:text-gray-100 font-semibold text-md' />
 
                       </div>
                     </div>
@@ -68,14 +70,27 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
                     <div className='my-2'>
                       <span className='text-gray-200 text-sm capitalize'>{decks.countCards} tarjetas</span>
                     </div>
-                    <div onClick={()=>{handleAddNewFlashcard; setShowAddNewFlashcardModal(!showAddNewFlashcardModal)}} className='hover:border-gray-400 border-[0.1px] w-full border-gray-500 rounded-md p-1 flex justify-center capitalize font-semibold text-sm items-center gap-2'>
+                    <div onClick={() => { handleAddNewFlashcard; setShowAddNewFlashcardModal(!showAddNewFlashcardModal) }} className='hover:border-gray-400 border-[0.1px] w-full border-gray-500 rounded-md p-1 flex justify-center capitalize font-semibold text-sm items-center gap-2'>
                       <RxPlus className='font-light text-lg text-slate-50' />
                       <span className='text-slate-50'>agregar tarjetas</span>
                     </div>
+                    {/* <div className="w-full flex justify-center mt-5">
+                      <div className="items-center">
+                        <RiLoader4Line className="animate-spin text-3xl text-blue-500 m-auto " />
+                        <p className="text-gray-400">cargando...</p>
+                      </div>
+                    </div> */}
                   </div>
                 </div>
-            )
-          })
+              )
+            })
+            :
+            <div className="w-full flex justify-center mt-5">
+              <div className="items-center">
+                <RiLoader4Line className="animate-spin text-3xl text-red-500 m-auto " />
+                <p className="text-gray-400">cargando...</p>
+              </div>
+            </div>
         }
       </ul>
     </div>
