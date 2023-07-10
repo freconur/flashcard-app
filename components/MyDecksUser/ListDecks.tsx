@@ -28,11 +28,6 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
     setShowSettingDeck(false)
   }
   useOnClickOutside(setting, handleClickOutside)
-
-  const handleAddNewFlashcard = () => {
-
-  }
-
   return (
     <div>
       {
@@ -71,7 +66,7 @@ const ListDecks = ({ decksUser, idUser }: Props) => {
                     <div className='my-2'>
                       <span className='text-gray-200 text-sm capitalize'>{decks.countCards} tarjetas</span>
                     </div>
-                    <div onClick={() => { handleAddNewFlashcard; setShowAddNewFlashcardModal(!showAddNewFlashcardModal) }} className='hover:border-gray-400 border-[0.1px] w-full border-gray-500 rounded-md p-1 flex justify-center capitalize font-semibold text-sm items-center gap-2'>
+                    <div onClick={() => setShowAddNewFlashcardModal(!showAddNewFlashcardModal)} className='hover:border-gray-400 border-[0.1px] w-full border-gray-500 rounded-md p-1 flex justify-center capitalize font-semibold text-sm items-center gap-2'>
                       <RxPlus className='font-light text-lg text-slate-50' />
                       <span className='text-slate-50'>agregar tarjetas</span>
                     </div>

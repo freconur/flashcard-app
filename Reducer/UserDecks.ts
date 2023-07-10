@@ -57,16 +57,13 @@ export const MyDecksUser = (dispatch: (action: any) => void, id: string) => {
     decksUser.map(async (deck) => {
       const querySnapshot = await getDocs(collection(db, `/decks-user/${id}/flashcards/${deck.id}/cards`));
       let count: number = 0
-      querySnapshot.forEach((doc) => {
-        count = count + 1
-      });
       const countCards = doc(db, `/decks-user/${id}/flashcards/`, `${deck.id}`);
 
       await updateDoc(countCards, {
-        countCards: count
+        countCards: querySnapshot.size
       });
     })
-    const decksUserFocusProperty = decksUser.map((deck, index) => ({
+    const decksUserFocusProperty = decksUser.map((deck) => ({
       ...deck,
       focus: false
     }))

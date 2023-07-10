@@ -12,7 +12,7 @@ interface PropsDeleteDeck {
 const AddNewFlashcardModal = ({
   showAddNewFlashcardModal, setShowAddNewFlashcardModal
 }: PropsDeleteDeck) => {
-  const { globalData, handleUpdateFlashCardTest, SelectDeck } = useGlobalContext()
+  const { globalData,DecksUserContext, SelectDeck } = useGlobalContext()
   const { idUser, currentlyDeck, decksUser, idDeck } = globalData
   // const { idUser, currentlyDeck, decksUser } = globalData
   const [currentlyValuesFlashcard, setCurrentlyValuesFlashcard] = useState<Flashcards | undefined>()
@@ -30,6 +30,7 @@ const AddNewFlashcardModal = ({
   const handleAddNewFlashcard = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     addNewFlashcard(idUser, currentlyDeck ? `${currentlyDeck?.id}` : idDeck, currentlyValuesFlashcard)
+    DecksUserContext(idUser)
     SelectDeck(currentlyDeck, idUser, decksUser)
     setShowAddNewFlashcardModal(!showAddNewFlashcardModal)
   }

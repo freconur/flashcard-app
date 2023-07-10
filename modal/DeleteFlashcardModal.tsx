@@ -16,7 +16,7 @@ interface PropsDeleteDeck {
 const DeleteFlashcardModal = ({
   showModalDeleteFlashcard, setShowModalDeleteFlashcard, idUser,idFlashcard,idDeck,currentlyDeck
 }: PropsDeleteDeck) => {
-  const { SelectDeck,globalData } = useGlobalContext()
+  const { SelectDeck,globalData,DecksUserContext } = useGlobalContext()
   const { decksUser } = globalData
   let container;
   if (typeof window !== "undefined") {
@@ -27,6 +27,8 @@ const DeleteFlashcardModal = ({
     deleteFlashcard(idUser, idDeck, idFlashcard)
       SelectDeck(currentlyDeck,idUser,decksUser)
       setShowModalDeleteFlashcard(!showModalDeleteFlashcard)
+    DecksUserContext(idUser)
+
   }
   return container
     ? createPortal(

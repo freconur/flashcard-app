@@ -29,9 +29,12 @@ const UpdateDeck = () => {
   return (
     <div className={`${settingsDeck && 'duration-300 left-0'} absolute z-[200] -left-[500px] duration-300 bg-secundary p-2 w-full h-altura`}>
 
-      <div onClick={updateDeckShow} className='flex justify-center items-center bg-transparent  text-gray-300 hover:text-gray-100 duration-100'>
+<div className="flex gap-3 mb-3">
+      <div onClick={updateDeckShow} className='flex justify-start items-center bg-transparent  text-gray-300 hover:text-gray-100 duration-100'>
         <RiArrowLeftLine className='cursor-pointer text-xl' />
       </div>
+<div className="text-lg font-semibold capitalize text-slate-300">editar deck</div>
+</div>
       <form onSubmit={(e) => updateDeck(e,deckValuesUpdate?.title)}>
         <InputNameUpdate deckValues={deckValuesUpdate} handleChangeUpdateDeck={handleChangeUpdateDeck} />
         <DeckColorsUpdate deckValues={deckValuesUpdate} setDeckValues={setDeckValuesUpdate}/>
