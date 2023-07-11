@@ -7,6 +7,8 @@ import initAuth from '../initAuth'
 import { app, authApp } from '../firebase/firebase.config'
 import { AuthAction, withAuthUser } from 'next-firebase-auth'
 import style from '../styles/RegisterLogin.module.css'
+import { RiFileEditFill } from "react-icons/ri";
+import { RiStackFill } from "react-icons/ri";
 // Note that next-firebase-auth inits Firebase for us,
 // so we don't need to.
 initAuth()
@@ -44,18 +46,18 @@ const Auth = () => {
   return (
     <div className='flex h-[100vh]'>
       <div className={style.division}>
-      {/* <div className='h-[100vh] grid place-content-center p-20 w-[50%] bg-principal rounded-r-lg'> */}
         <div className='text-slate-200'>
           <div>
-            <h1 className='text-3xl font-semibold capitalize'>flashcard study</h1>
+            <h1 className='my-4 text-3xl font-semibold capitalize'>flashcard study</h1>
           </div>
-          <p className='text-2xl font-semibold'>Te damos la bienvenida a una aplicacion simple pero efectiva para estudio </p>
-          <ul className='mt-3 text-xl font-semibold grid gap-3'>
-            <li>
-              crea y estudia flashcards
+          <p className='text-2xl font-semibold'>Te damos la bienvenida a una aplicacion simple pero efectiva para estudio.</p>
+          <ul className='mt-3 text-xl font-medium grid gap-3'>
+            <li className='flex gap-2 items-center'>
+              
+              <RiStackFill/>crea y estudia flashcards
             </li>
-            <li>
-              organizate y enfocate
+            <li className='flex gap-2 items-center'>
+              <RiFileEditFill/>organizate y enfocate
             </li>
           </ul>
         </div>
@@ -66,7 +68,6 @@ const Auth = () => {
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
             firebaseAuth={getAuth(app)}
-          // firebaseAuth={firebase.auth()}
           />
         ) : null}
       </div>
