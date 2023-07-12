@@ -6,7 +6,7 @@ const InfoStudyCards = () => {
   return (
     <div className='bg-white w-full'>
       <LayoutCenterContent>
-        <div className='grid grid-cols-2 h-[600px] bg-white p-10'>
+        <div className='grid grid-cols-2 bg-white p-10'>
           <div className="m-auto">
             <Image src={infoImage} width={500} height={500} alt="indo flashcards" />
           </div>
