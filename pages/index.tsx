@@ -1,6 +1,7 @@
 import { useAuthUser, withAuthUser } from 'next-firebase-auth'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
+import Header from '../components/Header/Header'
 
 const Home = () => {
   
@@ -11,7 +12,7 @@ const Home = () => {
         <meta name="description" content="custom cup description" />
       </Head>
       <Navbar/>
-      Bienvenido Flash Card Study
+      <Header/>
     </div>
   )
 }

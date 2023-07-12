@@ -35,7 +35,7 @@ const firebaseAuthConfig = {
       false,
   },
 }
-const Auth = () => {
+const Register = () => {
   const [renderAuth, setRenderAuth] = useState(false)
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -62,7 +62,7 @@ const Auth = () => {
         </div>
       </div>
       <div className=' bg-principal grid place-content-center w-[80%]'>
-        <h3 className='pl-5 capitalize text-2xl font-semibold text-slate-200'>inicia sesion</h3>
+        <h3 className='pl-5 capitalize text-2xl font-semibold text-slate-200'>Registrate</h3>
         {renderAuth ? (
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
@@ -76,4 +76,4 @@ const Auth = () => {
 export default withAuthUser({
   // whenUnauthedAfterInit:AuthAction.REDIRECT_TO_APP
   whenAuthed: AuthAction.REDIRECT_TO_APP
-})(Auth)
+})(Register)

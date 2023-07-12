@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="text-white font-semibold">FlashCards</div>
       <div className="flex gap-1 items-center justify-center">
         <Link href="/register-login">
-          <div className="bg-yellow-500 text-white font-semibold w-[120px] h-[40px] flex items-center justify-center capitalize rounded-sm cursor-pointer">Login</div>
+          <div className="bg-pink-400 text-white text-lg font-semibold w-[150px] h-[45px] flex items-center justify-center capitalize rounded-lg hover:bg-pink-300 duration-300 cursor-pointer">inicia sesion</div>
         </Link>
       </div>
     </nav>
