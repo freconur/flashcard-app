@@ -5,13 +5,13 @@ import { useEffect, useReducer, useState } from "react";
 import { authApp } from "../../firebase/firebase.config";
 import { DecksInitial, DecksReducer } from "../../Reducer/Decks.reducer";
 import Image from "next/image";
-import LogoMobile from '../../assets/logo-web.png'
+import LogoWeb from '../../assets/web-logo.png'
 
 const Navbar = () => {
   return (
     <nav className='w-full  bg-principal h-[60px] flex shadow-md justify-between p-4'>
       <div className="text-white font-semibold">
-      <Image src={LogoMobile} layout="responsive"  alt="logo-web"/>
+      <Image src={LogoWeb} layout="responsive"  alt="logo-web"/>
       </div>
       <div className="flex gap-1 items-center justify-center">
         <Link href="/register-login">
