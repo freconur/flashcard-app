@@ -13,7 +13,7 @@ const Header = () => {
               Una aplicacion sencilla pero efectiva para tus estudios.
             </h2>
             <p className='text-2xl text-slate-500 '>
-              Accede a nuestras herramientas para prepararte para tus examenes. con nuestro aplicativos web podras organizar y enfocarte solo en estudiar.
+              Accede a nuestra herramienta para prepararte para tus examenes. Con nuestro aplicativo web podras organizar y enfocarte solo en estudiar.
             </p>
             <Link href="register">
               <button className='hover:bg-cyan-600 duration-300 w-[300px] h-[70px] bg-cyan-500 text-slate-100 text-2xl font-semibold rounded-md'>Unete a nosotros!</button>
