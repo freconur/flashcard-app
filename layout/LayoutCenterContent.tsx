@@ -3,7 +3,7 @@ interface Props{
 }
 const LayoutCenterContent = ({ children }: Props) => {
   return (
-    <div className=' w-full xl:w-[1200px] xl:mx-auto'>
+    <div className='w-full xl:w-[1200px] xl:mx-auto'>
         {children}
     </div>
 )

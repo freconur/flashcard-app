@@ -70,6 +70,7 @@ export function GlobalProvider({ children }: Props) {
   const getUserInfo = (userData:UserInfo) => {
     dispatch({type:"userInfo", payload:userData})
   }
+ 
   return (
     <GlobalContext.Provider value={{
       globalData,
