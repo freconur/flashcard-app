@@ -22,7 +22,7 @@ const NavbarDashboard = ({ userInfo }: Props) => {
     <nav className='w-full  bg-principal h-[60px] flex shadow-md justify-between p-2'>
       <div className="text-white font-semibold flex gap-5">
         <div>
-          <Image src={LogoWeb} height={50} alt="logo-web" />
+          <Image src={LogoWeb} height={47} alt="logo-web" />
         </div>
         <Link href="/dashboard" className="rounded-lg bg-gradient-to-r from-teal-500 to-blue-700 hover:from-teal-400 hover:to-blue-600 duration-300 p-2 h-[45px] text-slate-100 capitalize flex items-center justify-center ">
           mi biblioteca
