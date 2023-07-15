@@ -5,9 +5,10 @@ import Link from 'next/link'
 import LayoutCenterContent from '../../layout/LayoutCenterContent'
 const Header = () => {
   return (
-    <div className='bg-white w-full'>
     <LayoutCenterContent>
-        <div className='grid grid-cols-2 w-full p-5'>
+      <div className='bg-white m-auto'>
+        <div className='grid max-w-[1440px] m-auto grid-cols-2 p-5'>
+          {/* <div className='grid w-[1200px] m-auto grid-cols-2 p-5'> */}
           <div className='grid place-content-center gap-10 p-[50px]'>
             <h2 className='text-5xl text-principal font-semibold '>
               Una aplicacion sencilla pero efectiva para tus estudios.
@@ -22,9 +23,9 @@ const Header = () => {
           <div className=' m-auto'>
             <Image className='' width={500} height={500} src={HeaderImage} alt="imagen para el header" />
           </div>
+        </div>
       </div>
     </LayoutCenterContent>
-    </div>
   )
 }
 

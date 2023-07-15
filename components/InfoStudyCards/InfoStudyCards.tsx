@@ -4,9 +4,9 @@ import infoImage from '../../assets/deck-info.png'
 import LayoutCenterContent from '../../layout/LayoutCenterContent'
 const InfoStudyCards = () => {
   return (
-    <div className='bg-white w-full'>
-      <LayoutCenterContent>
-        <div className='grid grid-cols-2 bg-white p-10'>
+    <LayoutCenterContent>
+      <div className='bg-white'>
+        <div className='grid grid-cols-2 max-w-[1440px] m-auto bg-white p-10'>
           <div className="m-auto">
             <Image src={infoImage} width={500} height={500} alt="indo flashcards" />
           </div>
@@ -17,8 +17,8 @@ const InfoStudyCards = () => {
             </p>
           </div>
         </div>
-      </LayoutCenterContent>
-    </div>
+      </div>
+    </LayoutCenterContent>
   )
 }
 
