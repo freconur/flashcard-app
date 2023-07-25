@@ -1,18 +1,18 @@
 import { AppProps } from 'next/app'
-import Layout from '../layout/Layout'
 import '../styles/global.css'
 import initAuth from '../initAuth' // the module you created above
-import { GlobalProvider } from '../context/ContextGlobal'
+import LayoutNavbar from '../layout/LayoutNavbar'
+import { GlobalContext, GlobalcontextProdiver } from '../context/GlobalContext'
 
 initAuth()
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-    <Layout>
-      <GlobalProvider>
+    <LayoutNavbar>
+      <GlobalcontextProdiver>
       <Component {...pageProps} />
-      </GlobalProvider>
-    </Layout>
+      </GlobalcontextProdiver>
+    </LayoutNavbar>
   )
 }
 

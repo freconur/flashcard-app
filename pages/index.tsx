@@ -1,23 +1,21 @@
+import { getAuth, signOut } from 'firebase/auth'
 import { useAuthUser, withAuthUser } from 'next-firebase-auth'
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import Header from '../components/Header/Header'
-import InfoStudyCards from '../components/InfoStudyCards/InfoStudyCards'
-import LayoutCenterContent from '../layout/LayoutCenterContent'
-import Footer from '../components/Footer/Footer'
+import { authApp } from '../firebase/firebase.config'
 
 const Home = () => {
-
+  const auth = getAuth(authApp)
+  const handleLogout = () => {
+    signOut(auth)
+  }
   return (
     <div>
       <Head>
-        <title>Waliky store</title>
+        <title>Library 18</title>
         <meta name="description" content="custom cup description" />
       </Head>
-      <Navbar />
-        <Header />
-        <InfoStudyCards />
-        <Footer/>
+      <div>la pagina de inicio sera el login</div>
+      <button onClick={handleLogout}>cerrar sesion</button>
     </div>
   )
 }

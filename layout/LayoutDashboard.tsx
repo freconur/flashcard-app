@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react"
-import SidebarDashboard from "../components/sidebar/SidebarDashboard"
-import DeleteDeckModal from "../modal/DeleteDeckModal"
-import NavbarDashboard from "../components/NavbarDashboard/NavbarDashboard"
-import { useGlobalContext } from "../context/ContextGlobal"
+import React from 'react'
+import Sidebar from '../components/Sidebar/sidebar'
 
 
 interface Props {
   children: JSX.Element | JSX.Element[]
 }
 const LayoutDashboard = ({ children }: Props) => {
-  const  { globalData } = useGlobalContext()
-  useEffect(() => {
-
-  },[globalData])
   return (
     <>
-    <NavbarDashboard userInfo={globalData.userInfo}/>
-
-    <div className="relative flex">
-      <SidebarDashboard />
-      {children}
-    </div>
+      <div className='flex'>
+        <Sidebar />
+        {children}
+      </div>
     </>
   )
 }

@@ -23,13 +23,13 @@ const initAuth = () => {
       // databaseURL: 'https://my-example-app.firebaseio.com',
     },
     firebaseClientInitConfig: {
-      apiKey: 'AIzaSyCzcuLYLvmhbjHqgGtRv36Gpjtl0uZFFP4', // required
-      authDomain: 'flashcardsapi-4701e.firebaseapp.com',
+      apiKey: 'AIzaSyCSdZmm2C3PhuABwlunacsG6IeHJe9EL4g', // required
+      authDomain: 'library18.firebaseapp.com',
       // databaseURL: 'https://my-example-app.firebaseio.com',
-      projectId: 'flashcardsapi-4701e',
+      projectId: 'library18',
     },
     cookies: {
-      name: 'flash-card-study', // required
+      name: 'library18', // required
       // Keys are required unless you set `signed` to `false`.
       // The keys cannot be accessible on the client side.
       keys: [
